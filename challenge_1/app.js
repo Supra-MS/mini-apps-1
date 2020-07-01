@@ -142,7 +142,7 @@ function clearCell(cellValue) {
 }
 
 function winnerMessage(player) {
-  winnerMsg[0].textContent = `Player ${player} Wins 😀!'`;
+  winnerMsg[0].textContent = ` !!😀 Player ${player} Wins 😀!!  `;
   playerScores[player].score++;
   if (player === 'X') {
     pxscore[0].textContent = playerScores[player].score;

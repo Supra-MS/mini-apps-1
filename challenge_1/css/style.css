@@ -83,7 +83,7 @@ body {
 }
 
 .settings-panel {
-  font-size: 23px;
+  font-size: 18px;
   font-weight: bold;
   margin-top: 25px;
   display: flex;
@@ -110,8 +110,7 @@ body {
   position: absolute;
   text-align: center;
   margin-top: -250px;
-  margin-left: 15px;
-  padding: 30px;
+  padding: 12px;
   background-color: rgb(15, 48, 63);
   display: block;
   opacity: 0.9;
