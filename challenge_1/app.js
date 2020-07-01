@@ -59,8 +59,18 @@ let reset = document.getElementById('reset');
 function init() {
   document.winner = null;
 
-  // Random player to start
-  if (Math.random() < 0.5) {
+  playerTurn = 'X';
+  playerx[0].className += ' active';
+  winnerPanel[0].className += ' invisible';
+
+  cells.forEach((cell) => {
+    clearCell(cell);
+  });
+
+}
+
+function winnerInit() {
+  if (document.winner === 'X') {
     playerTurn = 'X';
     playerx[0].className += ' active';
     winnerPanel[0].className += ' invisible';
@@ -70,6 +80,7 @@ function init() {
     winnerPanel[0].className += ' invisible';
   }
 
+  document.winner = null;
 
   cells.forEach((cell) => {
     clearCell(cell);
@@ -157,6 +168,7 @@ function winnerMessage(player) {
   } else {
     poscore[0].textContent = playerScores[player].score;
   }
+
 }
 
 function checkTie() {
@@ -179,7 +191,7 @@ reset.addEventListener('click', function() {
 });
 
 playagain.addEventListener('click', function() {
-  init();
+  winnerInit();
   winnerPanel[0].classList.remove('visible');
   winnerPanel[0].className += ' invisible';
 });
