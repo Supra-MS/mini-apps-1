@@ -14,8 +14,8 @@ body {
 }
 
 .container {
-  margin: 50px;
-  padding: 50px;
+  margin: 20px;
+  padding: 20px;
   background-color: rgb(175, 132, 76);
   border-radius: 20px;
 }
@@ -25,7 +25,7 @@ body {
 }
 
 .score-panel {
-  margin-top: 50px;
+  margin-top: 40px;
   font-size: 15px;
   font-weight: bold;
   display: flex;
@@ -34,7 +34,7 @@ body {
 
 .playerx, .playero, .ties {
   margin: 7px;
-  padding: 13px;
+  padding: 11px;
   border-radius: 10px;
   background-color: rgb(15, 48, 63);
 }
@@ -50,7 +50,7 @@ body {
 }
 
 .tiescore, .poscore, .pxscore {
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   text-align: center;
 }
 
@@ -64,21 +64,21 @@ body {
 
 .board {
   display: grid;
-  grid-template-columns: 115px 115px 115px;
-  grid-template-rows: 115px 115px 115px;
-  margin-top: 60px;
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px;
+  margin-top: 20px;
   grid-gap: 15px;
   background-color: rgba(15, 48, 63, 0.6);
 }
 
 .cell {
   background-color: rgb(175, 132, 76);
-  width: 115px;
-  height: 115px;
-  padding: 30px;
+  width: 100px;
+  height: 100px;
+  padding: 13px;
   text-align: center;
   cursor: pointer;
-  font-size: 63px;
+  font-size: 55px;
   font-weight: bolder;
 }
 
@@ -110,10 +110,51 @@ body {
   position: absolute;
   text-align: center;
   margin-top: -250px;
-  padding: 51px;
+  margin-left: 15px;
+  padding: 30px;
   background-color: rgb(15, 48, 63);
   display: block;
   opacity: 0.9;
   font-weight: bolder;
-  font-size: 22px;
+  font-size: 18px;
 }
+
+@media screen and (max-width: 360px) {
+  .board {
+    display: grid;
+    grid-template-columns: 80px 80px 80px;
+    grid-template-rows: 80px 80px 80px;
+    margin-top: 10px;
+    grid-gap: 22px;
+    background-color: rgba(15, 48, 63, 0.6);
+  }
+
+  .cell {
+    background-color: rgb(175, 132, 76);
+    width: 80px;
+    height: 80px;
+    padding: 13px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 55px;
+    font-weight: bolder;
+  }
+
+  .winner-panel.visible {
+    margin-left: 0px;
+  }
+
+  .reset, .playagain {
+    font-size: 18px;
+  }
+
+  .reset:hover, .playagain:hover {
+    font-size: 18px;
+  }
+
+  .score-panel {
+    font-size: 12px;
+  }
+
+}
+
