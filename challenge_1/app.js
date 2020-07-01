@@ -170,7 +170,11 @@ reset.addEventListener('click', function() {
   tiescore[0].textContent = playerScores['ties'].score = 0;
 });
 
-
+playagain.addEventListener('click', function() {
+  init();
+  winnerPanel[0].classList.remove('visible');
+  winnerPanel[0].className += ' invisible';
+});
 
 
 
