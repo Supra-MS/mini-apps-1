@@ -58,10 +58,18 @@ let reset = document.getElementById('reset');
 /* On Initial Page load */
 function init() {
   document.winner = null;
-  playerTurn = 'X';
 
-  playerx[0].className += ' active';
-  winnerPanel[0].className += ' invisible';
+  // Random player to start
+  if (Math.random() < 0.5) {
+    playerTurn = 'X';
+    playerx[0].className += ' active';
+    winnerPanel[0].className += ' invisible';
+  } else {
+    playerTurn = 'O';
+    playero[0].className += ' active';
+    winnerPanel[0].className += ' invisible';
+  }
+
 
   cells.forEach((cell) => {
     clearCell(cell);
