@@ -54,10 +54,22 @@ let tiescore = document.getElementsByClassName('tiescore');
 let playagain = document.getElementById('playagain');
 let board = document.getElementById('board');
 let reset = document.getElementById('reset');
+let pxname = document.getElementsByClassName('pxname');
+let poname = document.getElementsByClassName('poname');
 
 /* On Initial Page load */
 function init() {
   document.winner = null;
+  var player1 = prompt('Please enter player 1 name. Use 7 chars or less for the player name!') || 'PlayerX';
+  var player2 = prompt('Please enter player 1 name. Use 7 chars or less for the player name!') || 'PlayerO';
+  player1 = player1.split('').slice(0, 7).join('');
+  player2 = player2.split('').slice(0, 7).join('');
+
+  playerScores['X'].name = player1;
+  pxname[0].textContent = player1;
+
+  playerScores['O'].name = player2;
+  poname[0].textContent = player2;
 
   playerTurn = 'X';
   playerx[0].className += ' active';
