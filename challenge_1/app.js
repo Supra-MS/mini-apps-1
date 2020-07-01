@@ -61,7 +61,7 @@ let poname = document.getElementsByClassName('poname');
 function init() {
   document.winner = null;
   var player1 = prompt('Please enter player 1 name. Use 7 chars or less for the player name!') || 'PlayerX';
-  var player2 = prompt('Please enter player 1 name. Use 7 chars or less for the player name!') || 'PlayerO';
+  var player2 = prompt('Please enter player 2 name. Use 7 chars or less for the player name!') || 'PlayerO';
   player1 = player1.split('').slice(0, 7).join('');
   player2 = player2.split('').slice(0, 7).join('');
 
