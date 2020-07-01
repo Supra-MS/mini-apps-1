@@ -2,6 +2,138 @@ const cross = `<svg width="50" height="42" viewBox="0 0 50 42" fill="none" xmlns
 <path d="M3 2L21.587 17.2331L48 38.8801M3 38.8801C3 40.8471 33 18.118 48 6.50757" stroke="#BEDB38" stroke-width="5"/>
 </svg>`;
 
+let playerTurn;
+
+let playerScores = {
+  'X': {
+    'name': 'x',
+    'score': 0
+  },
+
+  'O': {
+    'name': 'o',
+    'score': 0
+  }
+};
+
+let cells = Array.from(document.getElementsByClassName('cell'));
+let winnerMsg = document.getElementsByClassName('winnermsg');
+let winnerPanel = document.getElementsByClassName('winner-panel');
+let playerx = document.getElementsByClassName('playerx');
+let playero = document.getElementsByClassName('playero');
+let pxscore = document.getElementsByClassName('pxscore');
+let poscore = document.getElementsByClassName('poscore');
+
+function init() {
+  document.winner = null;
+  playerTurn = 'X';
+
+  playerx[0].className += ' active';
+  winnerPanel[0].className += ' invisible';
+
+  cells.forEach((cell) => {
+    clearCell(cell);
+  });
+
+}
+
+function nextMove(cell) {
+  if (document.winner !== null) {
+    return;
+  } else
+  if (cell.textContent === '') {
+    cell.textContent = playerTurn;
+    switchPlayer();
+  } else {
+    console.log('Cell is occupied');
+  }
+}
+
+function switchPlayer() {
+  if (checkWinner(playerTurn)) {
+    console.log('winner msg');
+    winnerPanel[0].classList.remove('invisible');
+    winnerPanel[0].className += ' visible';
+    winnerMessage(playerTurn);
+    document.winner = playerTurn;
+  } else if (checkTie()) {
+    console.log('tie msg');
+    winnerPanel[0].classList.remove('invisible');
+    winnerPanel[0].className += ' visible';
+    winnerMsg[0].textContent = `It's a Tie. Play again!!`;
+  } else if (playerTurn === 'X') {
+    console.log('X turn');
+    playerTurn = 'O';
+    playero[0].className += ' active';
+    playerx[0].classList.remove('active');
+  } else {
+    console.log('O turn');
+    playerTurn = 'X';
+    playerx[0].className += ' active';
+    playero[0].classList.remove('active');
+  }
+}
+
+function checkWinner(move) {
+	var result = false;
+	if (checkCell(0, 1, 2, move) || checkCell(3, 4, 5, move) || checkCell(6, 7, 8, move)
+		|| checkCell(0, 3, 6, move) || checkCell(1, 4, 7, move) || checkCell(2, 5, 8, move)
+		|| checkCell(0, 4, 8, move) || checkCell(2, 4, 6, move)) {
+
+		result = true;
+	}
+	return result;
+}
+
+function checkCell(a, b, c, move) {
+	var result = false;
+	if (getCell(a) === move && getCell(b) === move && getCell(c) ===move) {
+		result = true;
+	}
+	return result;
+
+}
+
+function getCell(number) {
+	return document.getElementById(number.toString()).textContent;
+}
+
+function clearCell(cellValue) {
+  cellValue.innerText = '';
+}
+
+function winnerMessage(player) {
+  winnerMsg[0].textContent = `Player ${player} Wins 😀!'`;
+  playerScores[player].score++;
+  console.log(playerScores[player].score);
+  if (player === 'X') {
+    pxscore[0].textContent = playerScores[player].score;
+  } else {
+    poscore[0].textContent = playerScores[player].score;
+  }
+}
+
+function checkTie() {
+	for(var i = 0; i < 9; i++) {
+		if (getCell(i) === '') {
+			return false;
+		}
+	}
+	return true;
+}
+
+/* Reset */
+reset.addEventListener('click', function() {
+  init();
+  winnerPanel[0].classList.remove('visible');
+  winnerPanel[0].className += ' invisible';
+  console.log('reset');
+});
+
+
+/* SVG */
+
+
 const circle = `<svg width="53" height="55" viewBox="0 0 53 55" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g filter="url(#filter0_d)">
 <path d="M46.5 23.5C46.5 35.2015 37.4444 44.5 26.5 44.5C15.5556 44.5 6.5 35.2015 6.5 23.5C6.5 11.7985 15.5556 2.5 26.5 2.5C37.4444 2.5 46.5 11.7985 46.5 23.5Z" stroke="#F27404" stroke-width="5"/>
@@ -18,15 +150,3 @@ const circle = `<svg width="53" height="55" viewBox="0 0 53 55" fill="none" xmln
 </filter>
 </defs>
 </svg>`;
-
-const cell = document.getElementById('4');
-const cell1 = document.getElementById('2');
-const playerx = document.getElementsByClassName('playerx');
-console.log(playerx[0]);
-
-window.addEventListener('click', function() {
-  cell.innerHTML = cross;
-  playerx[0].className += ' active';
-  cell1.innerHTML = circle;
-});
-

@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="css/style.css">
   <title>Tic Tac Toe</title>
 </head>
-<body>
+<body onload="init();">
 
   <div class="container">
     <h2 class="title">Tic Tac Toe</h2>
@@ -28,29 +28,28 @@
       </div>
     </div>
 
-    <div class="board">
-      <div class="cell" id="0">0</div>
-      <div class="cell" id="1">1</div>
-      <div class="cell" id="2">2</div>
+    <div class="board" id="board">
+      <div class="cell" id="0" onclick="nextMove(this);">0</div>
+      <div class="cell" id="1" onclick="nextMove(this);">1</div>
+      <div class="cell" id="2" onclick="nextMove(this);">2</div>
 
-      <div class="cell" id="3">3</div>
-      <div class="cell" id="4">4</div>
-      <div class="cell" id="5">5</div>
+      <div class="cell" id="3" onclick="nextMove(this);">3</div>
+      <div class="cell" id="4" onclick="nextMove(this);">4</div>
+      <div class="cell" id="5" onclick="nextMove(this);">5</div>
 
-      <div class="cell" id="6">6</div>
-      <div class="cell" id="7">7</div>
-      <div class="cell" id="8">8</div>
+      <div class="cell" id="6" onclick="nextMove(this);">6</div>
+      <div class="cell" id="7" onclick="nextMove(this);">7</div>
+      <div class="cell" id="8" onclick="nextMove(this);">8</div>
     </div>
+
+      <div class="winner-panel">
+        <div class="winnermsg"></div>
+      </div>
 
     <div class="settings-panel">
-      <div class="reset">Reset</div>
+      <div class="reset" id="reset">Reset</div>
     </div>
 
-  </div>
-
-  <div class="winner-panel">
-    <div class="winnermsg">Player X Wins 😀!</div>
-    <div class="continuemsg">Click anywhere to continue.</div>
   </div>
 
   <script src="app.js"></script>
