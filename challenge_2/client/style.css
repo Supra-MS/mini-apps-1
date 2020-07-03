@@ -1,0 +1,76 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.title {
+  text-align: center;
+  margin: 20px;
+  padding: 5px;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 21px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+
+.leftside, .rightside {
+  display: flex;
+  justify-content: center;
+  height: 65vh;
+  width: 95%;
+}
+
+h5.upload-title {
+  margin-left: -70px;
+  font-size: 19px;
+  letter-spacing: 0.04em;
+  font-weight: bold;
+}
+
+h6 {
+  margin-left: 20px;
+  font-size: 17px;
+  letter-spacing: 0.04em;
+  font-weight: bold;
+}
+
+textarea {
+  margin: 0px 20px;
+  width: 95%;
+  padding: 10px;
+  text-align: left;
+  font-family: 'Courier New', Courier, monospace;
+  border: 0.2px solid lightblue;
+  background: #f0f0f0;
+  color: rgb(54, 54, 54);
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.btn {
+  margin: 20px;
+  cursor: pointer;
+  outline: none;
+  font-size: 12px;
+}
+
+#fileupload {
+  /* margin-left: 20px; */
+  padding: 5px;
+  cursor: pointer;
+}
+
+.convert, .download {
+  margin-right: 5px;
+  background-color: #794cff;
+  color: white;
+  letter-spacing: 0.03em;
+  outline: none;
+}
+
+
+
+
+

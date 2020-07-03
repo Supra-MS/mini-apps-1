@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON-to-CSV</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h4 class="title">Convert your JSON to CSV formatted data.</h4>
+
+  <div class="upload-container">
+    <span class="btn btn-main btn-default">
+      <h5 class="upload-title">Upload a JSON file</h5>
+      <label for="fileupload"></label>
+      <input type="file" id="fileupload" accept=".json">
+    </span>
+  </div>
+
+  <div class="row">
+
+    <div class="col">
+
+      <div class="leftside">
+        <form action="/json2csv" method="POST">
+          <label for="json"><h6>Paste your JSON here: </h6></label>
+          <textarea name="json" id="json" cols="50" rows="15" spellcheck="false" required>{}</textarea>
+          <button type="submit" class="btn btn-main convert">Convert</button>
+          <button type="reset" id="clear" class="btn btn-main">Clear</button>
+        </form>
+      </div>
+
+    </div> <!-- end of col1 -->
+
+    <div class="col">
+
+      <div class="rightside">
+        <form action="" method="">
+          <label for="result"><h6>Result Data: </h6></label>
+          <textarea name="json" id="result" cols="50" rows="15" spellcheck="false" required>server index ejs</textarea>
+          <button class="btn btn-main download">Download</button>
+        </form>
+      </div>
+
+    </div> <!-- end of col2 -->
+
+  </div> <!-- end of row -->
+
+  <script src="app.js"></script>
+</body>
+
+</html>
