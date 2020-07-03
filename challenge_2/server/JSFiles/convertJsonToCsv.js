@@ -1,4 +1,4 @@
-const incomingJSON = require('./samples/sales_report');
+const incomingJSON = require('../samples/sales_report');
 
 const convertJSONToCSV = (incomingJSON) => {
   let csv = '';
@@ -16,7 +16,6 @@ const convertJSONToCSV = (incomingJSON) => {
 
   const recurseJSONValues = (childrenValues) => {
     if (childrenValues.length) {
-      console.log(typeof childrenValues, Array.isArray(childrenValues));
       childrenValues.forEach(child => {
         let csvValuesArray = Object.values(child);
         let childValues = csvValuesArray.pop();

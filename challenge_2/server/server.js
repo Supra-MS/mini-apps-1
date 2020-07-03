@@ -17,7 +17,13 @@ app.get('/', (req, res) => {
   res.end();
 });
 
-
+app.post('/json2csv', (req, res, next) => {
+  let incomingJSON = JSON.parse(req.body.json);
+  let csvResultData= convertJSONToCSV(incomingJSON);
+  res.render('json2csv', { result: csvResultData, json: req.body.json });
+  res.end();
+  next();
+});
 
 app.listen(port, () => { console.log(`*** Server is listening on ${port} ***`); });
 
