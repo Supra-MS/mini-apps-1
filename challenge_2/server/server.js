@@ -35,17 +35,17 @@ app.post('/json2csv', (req, res, next) => {
 app.post('/jsonupload', upload.single('fileupload'), (req, res, next) => {
   console.log('Files: ', req.file);
   let fileJSON, csvResultData;
-  let oldFilepath = path.join(__dirname, `/csvReports/${req.file.filename}`);
+  let oldFilePath = path.join(__dirname, `/csvReports/${req.file.filename}`);
   let randomCSVName = `csvReport${randomId('0', 2)}`;
-  let newFilePath = path.join(__dirname, `/csvReports/${randomCSVName}`);
+  let newFilePath = path.join(__dirname, `/csvReports/${randomCSVName}.js`);
 
-  const renameFile = () => {
+  const renameFile = (oldFile, newFile) => {
     return new Promise((resolve, reject) => {
-      fs.rename(oldFilepath, newFilePath, (err, data) => {
+      fs.rename(`${oldFile}`, `${newFile}`, (err, data) => {
         if (err) {
           reject('Unable to rename the file!', err);
         } else {
-          console.log(`Renamed file is saved under "csvReports/${randomCSVName}"`);
+          console.log(`Renamed file is saved under ${newFile}`);
           resolve('Successfully able to rename the file', data);
         }
       });
@@ -65,7 +65,7 @@ app.post('/jsonupload', upload.single('fileupload'), (req, res, next) => {
     });
   };
 
-  renameFile().then(() => {
+  renameFile(oldFilePath, newFilePath).then(() => {
     readAFile().then((fileData) => {
       fileJSON = JSON.parse(fileData);
       csvResultData = convertJSONToCSV(fileJSON);
@@ -73,8 +73,22 @@ app.post('/jsonupload', upload.single('fileupload'), (req, res, next) => {
       res.end();
       next();
     })
+    .then(() => {
+      oldFilePath = newFilePath;
+      newFilePath = path.join(__dirname, `/csvReports/${randomCSVName}.csv`);
+      renameFile(oldFilePath, newFilePath).then(() => {
+        fs.writeFile(newFilePath, csvResultData, 'utf8', (err, data) => {
+          if (err) {
+            console.log('Unable to overwrite the json file to csv!!');
+          } else {
+            console.log('Successfully able to overwrite the json file!');
+          }
+        })
+        next();
+      })
+    })
     .catch((error) => {
-      console.log('Error in reading file: ', error);
+      console.log('Error in reading/writing file: ', error);
     });
   })
   .catch((error) => {
