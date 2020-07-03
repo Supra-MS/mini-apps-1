@@ -1,5 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const Promise = require('bluebird');
+const multer = require('multer');
+const upload = multer({ dest: 'csvReports/' });
+const randomId = require('randomatic');
+const path = require('path');
+const fs = require('fs');
 const convertJSONToCSV = require('./JSFiles/convertJsonToCsv');
 const port = process.env.PORT || 3000;
 
@@ -20,9 +26,61 @@ app.get('/', (req, res) => {
 app.post('/json2csv', (req, res, next) => {
   let incomingJSON = JSON.parse(req.body.json);
   let csvResultData= convertJSONToCSV(incomingJSON);
+  console.log('----Able to send csv as response for form submit----');
   res.render('json2csv', { result: csvResultData, json: req.body.json });
   res.end();
   next();
+});
+
+app.post('/jsonupload', upload.single('fileupload'), (req, res, next) => {
+  console.log('Files: ', req.file);
+  let fileJSON, csvResultData;
+  let oldFilepath = path.join(__dirname, `/csvReports/${req.file.filename}`);
+  let randomCSVName = `csvReport${randomId('0', 2)}`;
+  let newFilePath = path.join(__dirname, `/csvReports/${randomCSVName}`);
+
+  const renameFile = () => {
+    return new Promise((resolve, reject) => {
+      fs.rename(oldFilepath, newFilePath, (err, data) => {
+        if (err) {
+          reject('Unable to rename the file!', err);
+        } else {
+          console.log(`Renamed file is saved under "csvReports/${randomCSVName}"`);
+          resolve('Successfully able to rename the file', data);
+        }
+      });
+
+    });
+  };
+
+  const readAFile = () => {
+    return new Promise((resolve, reject) => {
+      fs.readFile(newFilePath, 'utf8', (err, fileData) => {
+        if (err) {
+          reject('Unable to read the file!');
+        } else {
+          resolve(fileData);
+        }
+      });
+    });
+  };
+
+  renameFile().then(() => {
+    readAFile().then((fileData) => {
+      fileJSON = JSON.parse(fileData);
+      csvResultData = convertJSONToCSV(fileJSON);
+      res.render('json2csv', {result: csvResultData, json: ''});
+      res.end();
+      next();
+    })
+    .catch((error) => {
+      console.log('Error in reading file: ', error);
+    });
+  })
+  .catch((error) => {
+    console.log('Error in renaming file: ', error);
+  });
+
 });
 
 app.listen(port, () => { console.log(`*** Server is listening on ${port} ***`); });

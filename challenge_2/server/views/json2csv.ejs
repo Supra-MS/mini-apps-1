@@ -14,10 +14,13 @@
   <h4 class="title">Convert your JSON to CSV formatted data.</h4>
 
   <div class="upload-container">
-    <span class="btn btn-main btn-default">
-      <h5 class="upload-title">Upload a JSON file</h5>
-      <label for="fileupload"></label>
-      <input type="file" id="fileupload" accept=".json">
+    <h5 class="upload-title">Upload a JSON file</h5>
+    <span>
+      <form action="/jsonupload" method="POST" enctype="multipart/form-data">
+        <label for="fileupload"></label>
+        <input type="file" id="fileupload" name="fileupload" accept=".json">
+        <button class="upload-btn btn btn-default" type="submit">Submit</button>
+      </form>
     </span>
   </div>
 
@@ -43,6 +46,7 @@
           <label for="result"><h6>Result Data: </h6></label>
           <textarea name="json" id="result" cols="50" rows="15" spellcheck="false" required><%= result %></textarea>
           <button class="btn btn-main download">Download</button>
+          <button type="reset" id="csvclear" class="btn btn-main">Clear</button>
         </form>
       </div>
 
