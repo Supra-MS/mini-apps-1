@@ -119,10 +119,8 @@ $(() => {
   $('#download').on('click', (e) => {
     endpoint = '';
     let csvResult = $('#result')[0].value;
-    console.log('Download result: ', csvResult);
 
     const blob = new Blob([csvResult], { type: 'text/csv' });
-    console.log('Blob: ', blob);
     const url = window.URL.createObjectURL(blob);
     const a  = document.createElement('a');
     a.setAttribute('hidden', '');
