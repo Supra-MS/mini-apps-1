@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const Promise = require('bluebird');
 const multer = require('multer');
 const upload = multer({ dest: 'csvReports/' });
@@ -11,8 +12,14 @@ const port = process.env.PORT || 3000;
 
 const app = express();
 
+app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(express.text({
+  type: "text/plain"
+}));
+
 app.use(express.static('../client'));
 
 app.set('view engine', 'ejs');
@@ -24,10 +31,12 @@ app.get('/', (req, res) => {
 });
 
 app.post('/json2csv', (req, res, next) => {
-  let incomingJSON = JSON.parse(req.body.json);
+  let incomingJSON = JSON.parse(req.body);
+  // let incomingJSON = JSON.parse(req.body.json);
   let csvResultData= convertJSONToCSV(incomingJSON);
   console.log('----Able to send csv as response for form submit----');
-  res.render('json2csv', { result: csvResultData, json: req.body.json });
+  // res.render('json2csv', { result: csvResultData, json: req.body.json });
+  res.send(csvResultData);
   res.end();
   next();
 });
@@ -35,9 +44,14 @@ app.post('/json2csv', (req, res, next) => {
 app.post('/jsonupload', upload.single('fileupload'), (req, res, next) => {
   console.log('Files: ', req.file);
   let fileJSON, csvResultData;
-  let oldFilePath = path.join(__dirname, `/csvReports/${req.file.filename}`);
+  if (req.file === undefined) {
+    res.send('Please select a file to upload');
+  }
+  let filename = req.file.filename;
+  let oldFilePath = path.join(__dirname, `/csvReports/${filename}`);
   let randomCSVName = `csvReport${randomId('0', 2)}`;
   let newFilePath = path.join(__dirname, `/csvReports/${randomCSVName}.js`);
+
 
   const renameFile = (oldFile, newFile) => {
     return new Promise((resolve, reject) => {
@@ -69,7 +83,8 @@ app.post('/jsonupload', upload.single('fileupload'), (req, res, next) => {
     readAFile().then((fileData) => {
       fileJSON = JSON.parse(fileData);
       csvResultData = convertJSONToCSV(fileJSON);
-      res.render('json2csv', {result: csvResultData, json: ''});
+      res.send(csvResultData);
+      // res.render('json2csv', {result: csvResultData, json: ''});
       res.end();
       next();
     })
@@ -97,5 +112,5 @@ app.post('/jsonupload', upload.single('fileupload'), (req, res, next) => {
 
 });
 
-app.listen(port, () => { console.log(`*** Server is listening on ${port} ***`); });
+app.listen(port, () => { console.log(`*** Server is listening on http://localhost:${port} ***`); });
 
