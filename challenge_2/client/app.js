@@ -6,7 +6,8 @@ $(() => {
   let textAreaContent;
 
   const ajaxFileUpload = (file) => {
-    formData.append('fileupload', file);
+    // formData.append('fileupload', file);
+    formData.set('fileupload', file);
     $.ajax({
       url: endpoint,
       type: 'POST',
@@ -19,6 +20,7 @@ $(() => {
         $('#result')[0].innerHTML = data;
         $('#json')[0].innerHTML = '';
         $('#convert').attr('disabled', false);
+        $('#fileupload')[0].value = '';
       },
       error: (error) => {
         console.log('Unable to post the uploaded json file: ', error);
