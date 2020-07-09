@@ -271,7 +271,7 @@ function BillingInformation(props) {
           </div>
           <div className="form-group">
             <label>Billing Zip Code :</label>
-            <input style={{ width: '180px' }} name="billZip" value={props.value.billZip} className="form-control" type="number" onChange={(e) => props.inputChange(e)} />
+            <input style={{ width: '180px' }} name="billZip" value={props.value.billZip} className="form-control" type="number" onChange={(e) => props.inputChange(e)} required />
           </div>
         </div>
         <button className="btn btn-danger" onClick={() => props.prevPage('userData')} >Back</button>

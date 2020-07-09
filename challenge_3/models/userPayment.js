@@ -4,7 +4,7 @@ const shortid = require('shortid');
 const userPaymentSchema = new mongoose.Schema({
   ccName: {
     type: String,
-    required: true
+    required: false
   },
   ccNumber: {
     type: Number,
@@ -21,7 +21,7 @@ const userPaymentSchema = new mongoose.Schema({
   },
   billZip: {
     type: Number,
-    required: true,
+    required: false,
   }
 });
 console.log('Inside user payment db called!!!');
