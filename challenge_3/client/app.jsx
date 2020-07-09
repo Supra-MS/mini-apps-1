@@ -42,11 +42,9 @@ class App extends React.Component {
         email: this.state.email,
         password: this.state.password
       })
-
     })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Data: ', data);
+      .then(response => {
+        console.log('Response: ', response);
       })
       .catch(error => {
         console.log('Error posting the auth details of user: ', error);
@@ -66,9 +64,8 @@ class App extends React.Component {
       })
 
     })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Data: ', data);
+      .then(response => {
+        console.log('Response: ', response);
       })
       .catch(error => {
         console.log('Error posting the user pii: ', error);
@@ -88,9 +85,8 @@ class App extends React.Component {
       })
 
     })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Data: ', data);
+      .then(Response => {
+        console.log('Response: ', Response);
       })
       .catch(error => {
         console.log('Error posting the user payment details: ', error);
