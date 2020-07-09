@@ -11,7 +11,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-
 /* Mongoose DB */
 mongoose.connect('mongodb://localhost/reactCheckOut', {
   useNewUrlParser: true,
@@ -21,7 +20,7 @@ mongoose.connect('mongodb://localhost/reactCheckOut', {
 mongoose.connection.on('connected', () => console.log('!!! Mongoose is connected !!!'));
 
 app.get('/', (req, res) => {
-  console.log('----------Render index page-------------');
+  console.log('----------Render Index page-------------');
   res.render('index');
 });
 
