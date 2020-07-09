@@ -16,7 +16,8 @@ class App extends React.Component {
       ccNum: '',
       exp: '',
       cvv: '',
-      billZip: ''
+      billZip: '',
+      pwdErr: ''
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.nextPage = this.nextPage.bind(this);
@@ -100,6 +101,12 @@ class App extends React.Component {
     this.setState({
       [name]: value
     });
+
+    if (e.target.name === 'password') {
+      this.setState({
+        pwdErr: value
+      })
+    }
   }
 
   nextPage(nextPage) {
@@ -182,6 +189,7 @@ function AuthenticateUser(props) {
         <div className="form-group">
           <label>Password :</label>
           <input className="form-control" type="password" name="password" value={props.value.password} placeholder="" onChange={(e) => props.inputChange(e)} required />
+          {(props.value.pwdErr.length >= 1 && props.value.pwdErr.length <6) ? <label style={{color: "red", fontSize: 18}}>Password should be at least 6 chars</label> : null}
         </div>
         <button className="btn btn-danger" onClick={() => props.prevPage('cart')} >Back</button>
         <button className="btn btn-primary" type="submit">Next</button>

@@ -21,7 +21,7 @@ const userPaymentSchema = new mongoose.Schema({
   },
   billZip: {
     type: Number,
-    required: false,
+    required: true,
   }
 });
 console.log('Inside user payment db called!!!');
