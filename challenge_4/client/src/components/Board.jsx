@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Circle from './Circle.jsx';
 
-function Board({matrix, handleClick }) {
+function Board({cells, currentPlayer, handleClick }) {
+  const [ highlightedColumn, setHighlightedColumn ] = useState(null)
+
+  const onMouseEnter= (col) => {
+    setHighlightedColumn(col)
+  }
+
+  const onMouseLeave = () => {
+    setHighlightedColumn(null)
+  }
+
   const matrixDom = [];
   let circleColumnKey = 0;
   /* Row of 7 col/cell */
@@ -11,8 +21,11 @@ function Board({matrix, handleClick }) {
       rowOf7Cells.push(
         <Circle
           key={circleColumnKey++}
-          cell={matrix[row][col]}
+          cell={cells[row][col]}
           handleClick={() => handleClick(col)}
+          onMouseEnter={() => onMouseEnter(col)}
+          onMouseLeave={onMouseLeave}
+          highlight={col === highlightedColumn}
          />
       )
     }
@@ -23,7 +36,17 @@ function Board({matrix, handleClick }) {
 
   return (
     <div className="board">
-      <div>{matrixDom}</div>
+      <div className="row">
+        {(new Array(7).fill(0)).map((cell, i) => (
+          <div key={`hCell_${i}`} >
+            <div
+            className={`${i === highlightedColumn ? (currentPlayer === "Red" ? "fillRed" : "fillYellow") : "hide"} hidecircle`}
+            />
+          </div>
+        ))}
+      </div>
+
+      {matrixDom}
     </div>
   )
 
