@@ -8,7 +8,6 @@ let gameBoard = SetBoard();
 class App extends React.Component {
   constructor(props) {
     super(props);
-    console.log('Set State: ', gameBoard);
     this.state = {
       boardState: gameBoard,
       winner: "",
@@ -80,8 +79,7 @@ class App extends React.Component {
   }
 
   checkTie() {
-    const { boardState, tieScore } = this.state;
-    console.log('Check tie board state: ', boardState);
+    const { boardState } = this.state;
     for (let row = 0; row < 6; row++) {
       for (let col = 0; col < 7; col++) {
         if (boardState[row][col] !== null) {
@@ -122,7 +120,6 @@ class App extends React.Component {
 
   handleClick(col) {
     const { boardState, playerTurn, hasWinner, isTie } = this.state;
-    console.log('On click has winner: ', hasWinner, 'isTie: ',isTie);
     if(!hasWinner && !isTie) {
       for (let row = 0; row < 6; row++) {
         if (boardState[row][col] === null) {
@@ -141,13 +138,11 @@ class App extends React.Component {
       }
 
     }
-
     console.log('Clicked', this.state.playerTurn);
   }
 
   displayWinnerMessage() {
     const { hasWinner, winner, isTie } = this.state;
-    console.log('isTie: ',isTie, "hasWinner: " , hasWinner)
     if (hasWinner) {
       return (
         <div className="winner lead" onClick={() => this.playagain()}>
