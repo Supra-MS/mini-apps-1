@@ -29,7 +29,7 @@ class App extends React.Component {
   }
 
   switchPlayer() {
-    if (this.state.playerTurn == "Red" ) {
+    if (this.state.playerTurn === "Red" ) {
       this.setState({
         playerTurn: "Yellow"
       })
@@ -150,16 +150,16 @@ class App extends React.Component {
     console.log('isTie: ',isTie, "hasWinner: " , hasWinner)
     if (hasWinner) {
       return (
-        <div className="winner lead">
-          {`Player ${winner} wins!`}
+        <div className="winner lead" onClick={() => this.playagain()}>
+          {`${winner} wins! Click Me to Play again!`}
         </div>
       )
     }
 
     if (isTie) {
       return (
-        <div className="tie">
-          It's a Tie!!
+        <div className="tie" onClick={() => this.playagain()}>
+          It's a Tie! Click Me to Play again!
         </div>
       )
     }
@@ -179,10 +179,6 @@ class App extends React.Component {
         {hasWinner || isTie ? (this.displayWinnerMessage()) : null }
           <Board cells={boardState} handleClick={this.handleClick} currentPlayer={playerTurn} />
         </div>
-        <button className="btn btn-warning" onClick={(e) => {
-            console.log('Reset clicked')
-            this.playagain();
-            }}>Play again</button>
         <button className="btn btn-success"
           onClick={(e) => {
             console.log('Reset clicked');

@@ -1,8 +1,9 @@
 body {
-  background: #494545;
+  background: #3f3a3a;
   color: rgb(238, 238, 238);
   text-align: center;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 0.04em;
 }
 .title {
   margin: 30px;
@@ -15,6 +16,7 @@ body {
 }
 
 .jumbotron {
+  border: 0.5px solid white;
   margin: 30px;
   padding: 30px;
   border-radius: 15px;
@@ -62,11 +64,10 @@ body {
 .winner {
   position: absolute;
   background-color: #385600;
-  margin-top: 185px;
-  font-size: 30px;
-  margin-left: 50px;
+  margin-top: 150px;
+  font-size: 23px;
+  margin-left: 21px;
   padding: 20px;
-  font-weight: bold;
   opacity: 0.9;
 }
 
@@ -74,8 +75,8 @@ body {
   position: absolute;
   background-color: #2c4302;
   margin-top: 185px;
-  font-size: 30px;
-  margin-left: 100px;
+  font-size: 23px;
+  margin-left: 18px;
   padding: 20px;
   font-weight: bold;
   opacity: 0.9;
@@ -100,9 +101,4 @@ body {
 
 .btn {
   margin: 0px 20px;
-}
-
-.btn-warning, .btn-warning:hover {
-  background-color: orange;
-  color: white;
 }
