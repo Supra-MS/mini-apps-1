@@ -34,7 +34,7 @@ let playerScores = {
   'O': {
     'name': 'o',
     'score': 0,
-    'color': '#f27404'
+    'color': '#03f5f9'
   },
   'ties': {
     'score': 0
@@ -60,10 +60,10 @@ let poname = document.getElementsByClassName('poname');
 /* On Initial Page load */
 function init() {
   document.winner = null;
-  var player1 = prompt('Please enter player 1 name. Use 7 chars or less for the player name!') || 'PlayerX';
-  var player2 = prompt('Please enter player 2 name. Use 7 chars or less for the player name!') || 'PlayerO';
-  player1 = player1.split('').slice(0, 7).join('');
-  player2 = player2.split('').slice(0, 7).join('');
+  var player1 = prompt('Please enter player 1 name. Use 8 chars or less for the player name!') || 'Player X';
+  var player2 = prompt('Please enter player 2 name. Use 8 chars or less for the player name!') || 'Player O';
+  player1 = player1.split('').slice(0, 8).join('');
+  player2 = player2.split('').slice(0, 8).join('');
 
   playerScores['X'].name = player1;
   pxname[0].textContent = player1;
@@ -137,7 +137,7 @@ function switchPlayer(cell) {
   } else {
     console.log('O turn');
     playerTurn = 'X';
-    cell.style.color = '#f27404';
+    cell.style.color = '#03f5f9';
     playerx[0].className += ' active';
     playero[0].classList.remove('active');
   }

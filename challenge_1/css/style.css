@@ -9,18 +9,22 @@ body {
   justify-content: center;
   font-family: 'Courier New', Courier, monospace;
   letter-spacing: 0.1em;
-  background-color: rgb(48, 47, 47);
-  color: rgb(214, 213, 213);
+  background: linear-gradient( rgba(36, 36, 36, 0.5), rgba(36, 36, 36, 0.5) ), url('b.jpg');
+  background-size: cover;
+  opacity: 0.9;
+  color: rgb(255, 255, 255);
 }
 
 .container {
-  margin: 20px;
-  padding: 20px;
-  background-color: rgb(175, 132, 76);
-  border-radius: 20px;
+  margin-top: 90px;
+  padding: 40px;
+  background-color: rgb(182, 103, 0);
+  border-radius: 50px;
+  border: 2px solid grey;
 }
 
 .title {
+  margin: 10px auto;
   text-align: center;
 }
 
@@ -46,7 +50,7 @@ body {
 
 .playero.active {
   margin: 3px;
-  border: 4px solid #f27404;
+  border: 4px solid #03f5f9;
 }
 
 .tiescore, .poscore, .pxscore {
@@ -54,12 +58,16 @@ body {
   text-align: center;
 }
 
-.poname {
-  color: #f27404;
+.tiescore, .tiesname {
+  color: rgb(255, 25, 0);
 }
 
-.pxname {
-  color: #bedb38;
+.poname, .poscore {
+  color: #03f5f9;
+}
+
+.pxname, .pxscore {
+  color: #d6fc2d;
 }
 
 .board {
@@ -67,12 +75,12 @@ body {
   grid-template-columns: 100px 100px 100px;
   grid-template-rows: 100px 100px 100px;
   margin-top: 20px;
-  grid-gap: 15px;
-  background-color: rgba(15, 48, 63, 0.6);
+  grid-gap: 16px;
+  background-color: rgb(15, 48, 63, 0.9);
 }
 
 .cell {
-  background-color: rgb(175, 132, 76);
+  background-color: rgb(182, 103, 0);
   width: 100px;
   height: 100px;
   padding: 13px;
@@ -91,15 +99,15 @@ body {
 }
 
 .reset, .playagain {
-  margin: 3px;
-  padding: 3px;
+  margin: 10px;
+  padding: 10px;
   cursor: pointer;
+  border: 1px solid white;
+  border-radius: 7px;
 }
 
 .reset:hover, .playagain:hover {
-  text-transform: uppercase;
-  color: rgba(15, 48, 63, 0.6);
-  text-decoration: underline;
+  background-color: rgba(15, 48, 63, 0.9);
 }
 
 .winner-panel.invisible {
@@ -124,12 +132,12 @@ body {
     grid-template-columns: 80px 80px 80px;
     grid-template-rows: 80px 80px 80px;
     margin-top: 10px;
-    grid-gap: 22px;
-    background-color: rgba(15, 48, 63, 0.6);
+    grid-gap: 18px;
+    background-color: rgb(15, 48, 63, 0.9);
   }
 
   .cell {
-    background-color: rgb(175, 132, 76);
+    background-color: rgb(182, 103, 0);
     width: 80px;
     height: 80px;
     padding: 13px;
