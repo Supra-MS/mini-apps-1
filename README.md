@@ -1,5 +1,5 @@
 # mini-apps-1
-This is a project I completed as a student at [hackreactor](http://hackreactor.com). This project was worked on with a pair.
+This is a project I completed as a student at [hackreactor](http://hackreactor.com). This project was worked as solo.
 
 ### Challenge 1 - Tic Tac Toe
 ![2021-02-15_22-45-53 (1)-min](https://user-images.githubusercontent.com/61848395/108028607-f5ac4f80-6fe0-11eb-9c50-72231b3cbc27.gif)
