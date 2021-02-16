@@ -33,7 +33,53 @@
       <div class="leftside">
         <form id="jsontext" action="/json2csv" method="POST">
           <label for="json"><h6>Paste your JSON here: </h6></label>
-          <textarea name="json" id="json" cols="30" rows="12" spellcheck="false" required>{}</textarea>
+          <textarea name="json" id="json" cols="30" rows="12" spellcheck="false" required> {
+    "firstName": "Joshie",
+    "lastName": "Wyattson",
+    "county": "San Mateo",
+    "city": "San Mateo",
+    "role": "Broker",
+    "sales": 1000000,
+    "children": [
+    {
+      "firstName": "Beth Jr.",
+      "lastName": "Johnson",
+      "county": "San Mateo",
+      "city": "Pacifica",
+      "role": "Manager",
+      "sales": 2900000,
+      "children": [
+        {
+          "firstName": "Smitty",
+          "lastName": "Won",
+          "county": "San Mateo",
+          "city": "Redwood City",
+          "role": "Sales Person",
+          "sales": 4800000,
+          "children": []
+        },
+        {
+          "firstName": "Allen",
+          "lastName": "Price",
+          "county": "San Mateo",
+          "city": "Burlingame",
+          "role": "Sales Person",
+          "sales": 2500000,
+          "children": []
+        }
+      ]
+    },
+    {
+      "firstName": "Beth",
+      "lastName": "Johnson",
+      "county": "San Francisco",
+      "city": "San Francisco",
+      "role": "Broker/Sales Person",
+      "sales": 7500000,
+      "children": []
+    }
+  ]
+}</textarea>
           <button id="convert" type="submit" class="btn btn-main convert">Convert</button>
           <button type="reset" id="clear" class="btn btn-main">Clear</button>
         </form>
