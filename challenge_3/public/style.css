@@ -1,5 +1,7 @@
 body {
-  background-color:  rgb(91, 92, 92);
+  background: linear-gradient(90deg, rgba(1,79,42,1) 0%, rgba(110,115,0,1) 97%);
+  /* background: radial-gradient(circle, rgba(144,151,0,1) 0%, rgba(110,115,0,1) 50%, rgba(1,79,42,1) 100%); */
+  background-size: cover;
   color: rgb(1, 58, 58);
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
@@ -10,8 +12,11 @@ body {
 }
 
 .jumbotron {
-  margin: 50px;
-  background-color: rgb(174, 204, 193);
+  margin: 100px 50px;
+  background-color: rgb(230, 230, 230);
+  border-radius: 50px;
+  border: 2px solid rgb(72, 72, 72);
+  box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.75);
 }
 
 .jumbotron label {

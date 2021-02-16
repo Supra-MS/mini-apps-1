@@ -167,6 +167,7 @@ function CartPage(props) {
 }
 
 function AuthenticateUser(props) {
+  let isPwdErr = (props.value.pwdErr.length >= 1 && props.value.pwdErr.length < 6);
   return (
     <div className="jumbotron">
       <form className="authUser" onSubmit={(e) => {
@@ -188,11 +189,13 @@ function AuthenticateUser(props) {
         </div>
         <div className="form-group">
           <label>Password :</label>
+          {isPwdErr && <span  style={{color: "red", fontSize: 18, marginLeft: "12px"}}>Password should be at least 6 chars</span>}
           <input className="form-control" type="password" name="password" value={props.value.password} placeholder="" onChange={(e) => props.inputChange(e)} required />
-          {(props.value.pwdErr.length >= 1 && props.value.pwdErr.length <6) ? <label style={{color: "red", fontSize: 18}}>Password should be at least 6 chars</label> : null}
         </div>
-        <button className="btn btn-danger" onClick={() => props.prevPage('cart')} >Back</button>
-        <button className="btn btn-primary" type="submit">Next</button>
+        <div style={{display: "block", marginTop: "30px"}}>
+          <button className="btn btn-danger" onClick={() => props.prevPage('cart')} >Back</button>
+          <button className="btn btn-primary" type="submit">Next</button>
+        </div>
       </form>
     </div>
   )
