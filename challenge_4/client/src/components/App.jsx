@@ -16,7 +16,8 @@ class App extends React.Component {
       playerTurn: "Red",
       playerRedScore: 0,
       playerYellowScore: 0,
-      tieScore: 0
+      tieScore: 0,
+      noOfNull: 41
     }
 
     this.handleClick = this.handleClick.bind(this);
@@ -71,7 +72,6 @@ class App extends React.Component {
     if (winner) {
       this.setState({
         winner,
-        end: true,
         hasWinner: true,
         isTie: false
       })
@@ -79,21 +79,18 @@ class App extends React.Component {
   }
 
   checkTie() {
-    const { boardState } = this.state;
-    for (let row = 0; row < 6; row++) {
-      for (let col = 0; col < 7; col++) {
-        if (boardState[row][col] !== null) {
-          this.setState({
-            isTie: true,
-          })
-        } else {
-          this.setState({
-            isTie: false
-          })
-        }
-      }
-    }
+    const { tieScore, noOfNull } = this.state;
 
+    this.setState({
+      noOfNull: noOfNull - 1
+    });
+
+    if (noOfNull === 0) {
+      this.setState({
+        isTie: true,
+        tieScore: tieScore + 1
+      });
+    }
   }
 
   reset() {
@@ -105,7 +102,8 @@ class App extends React.Component {
       playerTurn: "Red",
       playerRedScore: 0,
       playerYellowScore: 0,
-      tieScore: 0
+      tieScore: 0,
+      noOfNull: 41
     })
   }
 
@@ -115,11 +113,13 @@ class App extends React.Component {
       hasWinner: false,
       isTie: false,
       playerTurn: this.state.winner,
+      noOfNull: 41
     })
   }
 
   handleClick(col) {
-    const { boardState, playerTurn, hasWinner, isTie } = this.state;
+    const { boardState, playerTurn, hasWinner, isTie, tieScore } = this.state;
+
     if(!hasWinner && !isTie) {
       for (let row = 0; row < 6; row++) {
         if (boardState[row][col] === null) {
@@ -136,9 +136,8 @@ class App extends React.Component {
           console.log("Cell is occupied!!");
         }
       }
-
     }
-    console.log('Clicked', this.state.playerTurn);
+
   }
 
   displayWinnerMessage() {
@@ -167,7 +166,7 @@ class App extends React.Component {
         <h5 className="title">Connect 4 Game</h5>
         <div className="jumbotron gameboard">
           <span className="redGame">Red: {playerRedScore}</span>
-          <span>Tie: {(isTie) ? tieScore + 1 : tieScore}</span>
+          <span className="tieGame">Tie: {isTie ? tieScore : tieScore}</span>
           <span className="yellowGame">Yellow: {playerYellowScore}</span>
         </div>
         <div className="jumbotron">

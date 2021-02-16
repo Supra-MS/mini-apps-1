@@ -1,10 +1,13 @@
 body {
-  background: #3f3a3a;
+  background: linear-gradient( rgba(0, 55, 128, 0.2), rgba(0, 55, 128, 0.2) ), url('./b.jpg');
+  background-size: cover;
+  opacity: 0.8;
   color: rgb(238, 238, 238);
   text-align: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   letter-spacing: 0.04em;
 }
+
 .title {
   margin: 30px;
   font-size: x-large;
@@ -20,7 +23,7 @@ body {
   margin: 30px;
   padding: 30px;
   border-radius: 15px;
-  background: linear-gradient(#6ca9f8, #0566e4);
+  background: linear-gradient(#4294ff, rgb(0, 83, 191));
 }
 
 .circlediv {
@@ -46,11 +49,11 @@ body {
 }
 
 .fillRed {
-  background-color: rgb(223, 75, 75);
+  background: radial-gradient(circle at 5px 5px, rgb(255, 0, 0), rgb(148, 0, 0));
 }
 
 .fillYellow {
-  background-color: yellow;
+  background: radial-gradient(circle at 5px 5px, rgb(255, 255, 0), rgb(157, 157, 0));
 }
 
 .hide {
@@ -93,12 +96,19 @@ body {
 
 .redGame {
   color: rgb(255, 0, 0);
+  border: 2px solid rgb(255, 0, 0);
 }
 
 .yellowGame {
   color: yellow;
+  border: 2px solid yellow;
+}
+
+.tieGame {
+  border: 2px solid white;
 }
 
 .btn {
   margin: 0px 20px;
+  letter-spacing: 0.08em;
 }
